@@ -52,7 +52,7 @@ class BuzzerBuzzCommand extends Command {
         if (buzzerQueue.length % 3 === 0) {
           var num = 1;
           return message.channel.send(
-            `Dookie list: ${buzzerQueue.reduce((str, buzz) => {
+            `Buzz list: ${buzzerQueue.reduce((str, buzz) => {
               return (
                 str +
                 `${num++}. ${this.client.util.resolveUser(
