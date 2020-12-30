@@ -43,7 +43,7 @@ class BuzzerRandomizeCommand extends Command {
       var num = 1;
       try {
         return message.channel.send(
-          `Randomized the dookie list: ${buzzerQueue.reduce((str, buzz) => {
+          `Randomized the buzzer list: ${buzzerQueue.reduce((str, buzz) => {
             return (
               str +
               `${num++}. ${this.client.util.resolveUser(

@@ -307,7 +307,7 @@ mongoose
         });
       });
 
-      // Enable/disabled the buzzer.
+      // Enable/disable the buzzer.
       socket.on("changeReady", ({ guild, ready, sessionId }) => {
         if (guild.id === "") return;
         SessionModel.findOne({ id: sessionId }).then((doc) => {
@@ -396,7 +396,7 @@ mongoose
               client.settings.set(guildObj.id, "buzzerQueue", []);
               const channelObj = getBuzzerChannel(guildObj);
               if (channelObj) {
-                channelObj.send("Cleared the dookie list.");
+                channelObj.send("Cleared the buzzer list.");
               }
               socket.emit(
                 "buzz",
@@ -432,7 +432,7 @@ mongoose
                 var num = 1;
                 if (channelObj) {
                   return channelObj.send(
-                    `Randomized the dookie list: ${client.settings
+                    `Randomized the buzzer list: ${client.settings
                       .get(guild.id, "buzzerQueue", [])
                       .reduce((str, buzz) => {
                         return (
