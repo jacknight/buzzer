@@ -14,23 +14,16 @@ class BuzzerNickCommand extends Command {
   }
 
   userPermissions(message) {
-    const buzzerRole = this.client.settings
-      .get(message.guild.id, "buzzerRole", "buzzer")
-      .toLowerCase();
-    const buzzerRoleObj = this.client.util.resolveRole(
-      buzzerRole,
-      message.guild.roles.cache
-    );
     if (
-      !message.member.roles.cache.some((role) => {
-        return role.name.toLowerCase() === buzzerRole;
-      })
+      !message.member.roles.cache.some(
+        (role) =>
+          role.name.toLowerCase() ===
+          this.client.settings
+            .get(message.guild.id, "buzzerRole", "Buzzer")
+            .toLowerCase()
+      )
     ) {
-      return message.channel.send(
-        `Only users with the role ${
-          buzzerRoleObj ? buzzerRoleObj : buzzerRole
-        } can change my nickname.`
-      );
+      return "Only for the one who controls the buzzer.";
     }
     return null;
   }
