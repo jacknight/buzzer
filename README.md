@@ -1,4 +1,6 @@
-**Buzzerd** is a game show-style buzzer bot. Users with a certain role (defaulted to `@Buzzer`) are able to control the buzzer's functionality. That functionality includes:
+# Buzzerd
+
+**Buzzerd** is a game show-style buzzer **discord bot**. Users with a certain role (defaulted to `@Buzzer`) are able to control the buzzer's functionality. That functionality includes:
 - Enable/disable the buzzer.
 - Clear the buzzed-in list.
 - Randomize the buzzed-in list.
