@@ -1,5 +1,7 @@
 # Buzzerd
 
+[Add Buzzerd to your Discord server](https://discord.com/api/oauth2/authorize?client_id=793784998930677820&permissions=67128384&redirect_uri=https%3A%2F%2Fbuzzerd.herokuapp.com&scope=bot&redirect_uri=https%3A%2F%2Fbuzzerd.herokuapp.com)
+
 **Buzzerd** is a game show-style buzzer **discord bot**. Users with a certain role (defaulted to `@Buzzer`) are able to control the buzzer's functionality. That functionality includes:
 - Enable/disable the buzzer.
 - Clear the buzzed-in list.
