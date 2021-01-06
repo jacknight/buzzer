@@ -28,11 +28,11 @@ class BuzzerClearCommand extends Command {
     return null;
   }
 
-  exec(message) {
+  async exec(message) {
     // There must be a better way to do this...
     if (
       JSON.parse(
-        this.client.settings.get(
+        await this.client.settings.get(
           message.guild.id,
           "buzzerChannel",
           JSON.stringify(message.channel)
@@ -42,7 +42,7 @@ class BuzzerClearCommand extends Command {
       return;
     }
 
-    this.client.settings.set(message.guild.id, "buzzerQueue", []);
+    await this.client.settings.set(message.guild.id, "buzzerQueue", []);
     if (this.client.sockets.has(message.guild.id)) {
       this.client.sockets.get(message.guild.id).forEach((socket) => {
         socket.emit("buzz", []);

@@ -14,13 +14,15 @@ class BuzzerRoleCommand extends Command {
   }
 
   async userPermissions(message) {
-    const buzzerRole = await this.client.settings
-      .get(message.guild.id, "buzzerRole", "buzzer")
-      .toLowerCase();
     if (
       !message.member.hasPermission("MANAGE_ROLES") &&
-      !message.member.roles.cache.some((role) => {
-        return role.name.toLowerCase() === buzzerRole;
+      !message.member.roles.cache.some(async (role) => {
+        role.name ===
+          (await this.client.settings.set(
+            message.guild.id,
+            "buzzerRole",
+            "Buzzer"
+          ));
       })
     ) {
       return message.channel.send(
@@ -30,11 +32,11 @@ class BuzzerRoleCommand extends Command {
     return null;
   }
 
-  exec(message, { role }) {
+  async exec(message, { role }) {
     if (!role) {
       return message.channel.send(`That role does not exist.`);
     }
-    this.client.settings.set(message.guild.id, "buzzerRole", role.name);
+    await this.client.settings.set(message.guild.id, "buzzerRole", role.name);
     return message.channel.send(
       `Only users with the role \`${role.name}\` can configure the buzzer.`
     );

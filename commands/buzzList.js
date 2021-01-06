@@ -29,8 +29,8 @@ class BuzzerListCommand extends Command {
     return null;
   }
 
-  exec(message) {
-    const buzzerQueue = this.client.settings.get(
+  async exec(message) {
+    const buzzerQueue = await this.client.settings.get(
       message.guild.id,
       "buzzerQueue",
       []
