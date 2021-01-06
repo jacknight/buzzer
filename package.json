@@ -5,6 +5,7 @@
   "main": "buzzer.js",
   "author": "Jack Knight",
   "dependencies": {
+    "@top-gg/sdk": "^3.0.7",
     "cors": "^2.8.5",
     "discord-akairo": "^8.1.0",
     "discord-oauth2": "^2.6.0",
