@@ -88,6 +88,9 @@ mongoose
       },
     });
 
+    // Set bot status
+    client.on("ready", () => {});
+
     // Need this here before we reference other "client.on" items.
     // According to documentation, this is important.
     client.on("ready", () => {
@@ -274,7 +277,7 @@ mongoose
                 mode: mode,
               });
 
-              let channelObj = getBuzzerChannel(guildObj);
+              let channelObj = await getBuzzerChannel(guildObj);
               if (channelObj) {
                 if (mode === "chaos") {
                   channelObj.send(`Buddy...you are now in **${mode} mode!!!**`);
@@ -309,7 +312,7 @@ mongoose
                 ready: ready,
                 clear: true,
               });
-              const channelObj = getBuzzerChannel(guildObj);
+              const channelObj = await getBuzzerChannel(guildObj);
 
               if (channelObj) {
                 channelObj.send(
@@ -374,7 +377,7 @@ mongoose
                 });
               }
               await client.settings.set(guildObj.id, "buzzerQueue", []);
-              const channelObj = getBuzzerChannel(guildObj);
+              const channelObj = await getBuzzerChannel(guildObj);
               if (channelObj) {
                 channelObj.send("Cleared the buzzer list.");
               }
@@ -389,7 +392,7 @@ mongoose
 
       socket.on("randomizeQueue", ({ guild, sessionId }) => {
         if (guild.id === "") return;
-        SessionModel.findOne({ id: sessionId }).then((doc) => {
+        SessionModel.findOne({ id: sessionId }).then(async (doc) => {
           if (doc.session) {
             const guildObj = client.util.resolveGuild(
               guild.id,
@@ -403,35 +406,42 @@ mongoose
                   command: "randomizeQueue",
                 });
               }
-              require("./util").shuffle(
-                client.settings.get(guild.id, "buzzerQueue", [])
+              let buzzerQueue = await client.settings.get(
+                guild.id,
+                "buzzerQueue",
+                []
               );
-              const channelObj = getBuzzerChannel(guildObj);
+              require("./util").shuffle(buzzerQueue);
+              await client.settings.set(guild.id, "buzzerQueue", buzzerQueue);
+              const channelObj = await getBuzzerChannel(guildObj);
 
               try {
                 var num = 1;
                 if (channelObj) {
                   return channelObj.send(
-                    `Randomized the buzzer list: ${client.settings
-                      .get(guild.id, "buzzerQueue", [])
-                      .reduce((str, buzz) => {
+                    `Randomized the buzzer list: ${buzzerQueue.reduce(
+                      (str, buzz) => {
+                        const member = client.util.resolveMember(
+                          JSON.parse(buzz).id,
+                          guildObj.members.cache
+                        );
                         return (
                           str +
-                          `${num++}. ${client.util.resolveUser(
-                            JSON.parse(buzz).id,
-                            guildObj.members.cache
-                          )}\n`
+                          (member
+                            ? `${num++}. ${
+                                member.nickname || member.user.username
+                              }\n`
+                            : "")
                         );
-                      }, "\n")}`
+                      },
+                      "\n"
+                    )}`
                   );
                 }
               } catch (err) {
                 console.log(err);
               }
-              socket.emit(
-                "buzz",
-                await client.settings.get(guild.id, "buzzerQueue", [])
-              );
+              socket.emit("buzz", buzzerQueue);
             }
           }
         });
