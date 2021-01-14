@@ -1,4 +1,10 @@
-# ![alt text][logo] Buzzerd
+<p align="center"><img src="https://github.com/jacknight/buzzer/raw/main/assets/bolt-small.png" />
+  <br />
+  <h1 align="center">
+    <strong>Buzzerd</strong>
+  </h1>
+</p>
+
 
 [Add Buzzerd to your Discord server](https://discord.com/api/oauth2/authorize?client_id=793784998930677820&permissions=67128384&redirect_uri=https%3A%2F%2Fbuzzerd.herokuapp.com&scope=bot&redirect_uri=https%3A%2F%2Fbuzzerd.herokuapp.com)
 
