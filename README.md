@@ -1,4 +1,4 @@
-# Buzzerd
+# ![alt text][logo] Buzzerd
 
 [Add Buzzerd to your Discord server](https://discord.com/api/oauth2/authorize?client_id=793784998930677820&permissions=67128384&redirect_uri=https%3A%2F%2Fbuzzerd.herokuapp.com&scope=bot&redirect_uri=https%3A%2F%2Fbuzzerd.herokuapp.com)
 
@@ -17,3 +17,5 @@ Visit the [Buzzerd Mainframe](https://buzzerd.herokuapp.com) to control the buzz
 **NOTE:** The buzzer will be disabled until someone with the `@Buzzer` role enables it. This buzzer role can be changed (`!buzz.role @NewBuzzerRole`) by anyone with the default `@Buzzer` role or with the power to manage roles on the server.
 
 This bot is especially useful for discord servers which host their own _Jeopardy!_ style game show on voice/video chat. Enjoy the fun, and when things get stale, switch to chaos mode!
+
+[logo]: https://github.com/jacknight/buzzer/raw/main/assets/bolt-small.png "Buzzerd Lightning Bolt Logo"
