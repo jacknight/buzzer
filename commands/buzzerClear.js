@@ -12,8 +12,8 @@ class BuzzerClearCommand extends Command {
     });
   }
 
-  userPermissions(message) {
-    const buzzerRole = this.client.settings
+  async userPermissions(message) {
+    const buzzerRole = await this.client.settings
       .get(message.guild.id, "buzzerRole", "buzzer")
       .toLowerCase();
     if (
@@ -21,7 +21,9 @@ class BuzzerClearCommand extends Command {
         return role.name.toLowerCase() === buzzerRole;
       })
     ) {
-      return "You don't have permission.";
+      return message.channel.send(
+        `You don't have permission. Must have role \`${buzzerRole}\``
+      );
     }
     return null;
   }
