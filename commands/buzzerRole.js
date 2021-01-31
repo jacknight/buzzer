@@ -13,16 +13,19 @@ class BuzzerRoleCommand extends Command {
     });
   }
 
-  userPermissions(message) {
+  async userPermissions(message) {
+    const buzzerRole = await this.client.settings
+      .get(message.guild.id, "buzzerRole", "buzzer")
+      .toLowerCase();
     if (
       !message.member.hasPermission("MANAGE_ROLES") &&
-      !message.member.roles.cache.some(
-        (role) =>
-          role.name ===
-          this.client.settings.set(message.guild.id, "buzzerRole", "Buzzer")
-      )
+      !message.member.roles.cache.some((role) => {
+        return role.name.toLowerCase() === buzzerRole;
+      })
     ) {
-      return "You don't have permission.";
+      return message.channel.send(
+        `You don't have permission. Must have role \`${buzzerRole}\` or otherwise have permission to manage roles.`
+      );
     }
     return null;
   }

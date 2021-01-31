@@ -13,17 +13,18 @@ class BuzzerNickCommand extends Command {
     });
   }
 
-  userPermissions(message) {
+  async userPermissions(message) {
+    const buzzerRole = await this.client.settings
+      .get(message.guild.id, "buzzerRole", "buzzer")
+      .toLowerCase();
     if (
-      !message.member.roles.cache.some(
-        (role) =>
-          role.name.toLowerCase() ===
-          this.client.settings
-            .get(message.guild.id, "buzzerRole", "Buzzer")
-            .toLowerCase()
-      )
+      !message.member.roles.cache.some((role) => {
+        return role.name.toLowerCase() === buzzerRole;
+      })
     ) {
-      return "Only for the one who controls the buzzer.";
+      return message.channel.send(
+        `You don't have permission. Must have role \`${buzzerRole}\``
+      );
     }
     return null;
   }
