@@ -90,7 +90,11 @@ mongoose
 
     // Need this here before we reference other "client.on" items.
     // According to documentation, this is important.
-    client.on("ready", () => {});
+    client.on("ready", () => {
+      // Post stats to top.gg (auto posts every 30 min)
+      const AutoPoster = require("topgg-autoposter");
+      const ap = AutoPoster(process.env.TOPGG_TOKEN, client); // your discord.js or eris client
+    });
 
     // We need a collection of sockets that we emit to
     // when the guild they are viewing on the control panel
