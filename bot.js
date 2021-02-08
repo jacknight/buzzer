@@ -92,29 +92,6 @@ mongoose
     // According to documentation, this is important.
     client.on("ready", () => {});
 
-    // New member greeting.
-    client.on("guildMemberAdd", (member) => {
-      try {
-        if (member.id === "141822351321989120") {
-          // gorb
-          member.guild.systemChannel.send("gorb");
-        } else if (member.id === "251217007045902348") {
-          // tay
-          member.guild.systemChannel.send("Tay is back!");
-        } else if (member.id === client.ownerID) {
-          member.guild.systemChannel.send(
-            "My master! My master has returned! I kept telling them you would!"
-          );
-        } else {
-          member.guild.systemChannel.send(
-            `Welcome, ${member}! You don't have to be insane to post here, but it helps.`
-          );
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    });
-
     // We need a collection of sockets that we emit to
     // when the guild they are viewing on the control panel
     // updates in any way. The map is:
@@ -543,3 +520,13 @@ mongoose
     }
   })
   .catch((err) => console.log(err));
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.log(
+    "Unhandled rejection. Reason:\n\t",
+    reason,
+    "'\n",
+    "Promise:\n\t",
+    promise
+  );
+});
