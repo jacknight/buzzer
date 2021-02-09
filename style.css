@@ -1,19 +1,20 @@
 :root {
-  --yksgreen: rgba(131, 193, 51, 1);
-  --yksblack: rgba(10, 10, 10, 1);
-  --ykswhite: rgba(255, 255, 255, 1);
+  --primaryColor: rgba(70, 51, 193, 1);
+  --backgroundColor: rgba(10, 10, 10, 1);
+  --foregroundColor: rgba(255, 255, 255, 1);
 }
+
 body {
-  background: var(--yksblack);
+  background: var(--backgroundColor);
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   text-transform: uppercase;
-  color: var(--ykswhite);
+  color: var(--foregroundColor);
 }
 
 a {
-  color: var(--ykswhite);
-  background: var(--yksgreen);
+  color: var(--foregroundColor);
+  background: var(--primaryColor);
   transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
   padding: 20px;
   text-decoration: none;
@@ -22,30 +23,30 @@ a {
 }
 
 a:hover {
-  color: var(--yksgreen);
-  background: var(--ykswhite);
+  color: var(--primaryColor);
+  background: var(--foregroundColor);
 }
 
 button {
   text-transform: uppercase;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  background: var(--ykswhite);
-  border: var(--yksgreen) solid 1px;
-  color: var(--yksgreen);
+  background: var(--foregroundColor);
+  border: var(--primaryColor) solid 1px;
+  color: var(--primaryColor);
   font-size: 1.5rem;
 }
 
 button:hover {
-  background: var(--yksgreen);
-  color: var(--ykswhite);
-  border: var(--ykswhite) solid 1px;
+  background: var(--primaryColor);
+  color: var(--foregroundColor);
+  border: var(--foregroundColor) solid 1px;
 }
 
 button:active {
-  background: var(--yksblack);
-  color: var(--yksgreen);
-  border: var(--ykswhite) solid 1px;
+  background: var(--backgroundColor);
+  color: var(--primaryColor);
+  border: var(--foregroundColor) solid 1px;
 }
 
 .layout {
@@ -63,8 +64,8 @@ button:active {
 .control-panel {
   display: grid;
   width: 300px;
-  background: var(--yksgreen);
-  border: rgba(255, 255, 255, 1) solid 5px;
+  background: var(--primaryColor);
+  border: var(--foregroundColor) solid 5px;
   margin-top: 40px;
   align-self: end;
 }
@@ -80,7 +81,7 @@ button:active {
 
 .buzz-list h1 {
   align-self: start;
-  border-bottom: var(--ykswhite) dotted 2px;
+  border-bottom: var(--foregroundColor) dotted 2px;
 }
 
 .buzz-list ol {
@@ -113,7 +114,7 @@ button:disabled {
   grid-template-areas:
     "queue queue"
     "random clear";
-  border-bottom: rgba(255, 255, 255, 1) solid 5px;
+  border-bottom: var(--foregroundColor) solid 5px;
 }
 
 .buzz-controls {
