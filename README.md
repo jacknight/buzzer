@@ -24,4 +24,32 @@ Visit the [Buzzerd Mainframe](https://buzzerd.herokuapp.com) to control the buzz
 
 This bot is especially useful for discord servers which host their own _Jeopardy!_ style game show on voice/video chat. Enjoy the fun, and when things get stale, switch to chaos mode!
 
+# Run Locally
+
+You may want to run the bot locally yourself, especially since my bot has reached the maximum number of servers and Discord is slow to verify it. You will need:
+
+1. A MongoDB database
+2. A discord bot's token, client ID, and client secret (create a bot on https://discord.com/developers)
+
+Then, to build and run the bot:
+
+1. Clone this repository
+2. Create a `.env` file with the following environmental variables:
+  - `PORT=<choose a port number, 3000 by default>`
+  - `MONGO_USER=<your mongo database user>`
+  - `MONGO_PW=<your mongo database password>`
+  - `MONGO_DB=<your mongo database name>`
+  - `AUTH_TOKEN=<your discord bot auth token>`
+  - `DISCORD_BOT_CLIENT_ID=<your discord bot client id>`
+  - `DISCORD_BOT_CLIENT_SECRET=<your discord bot client secret>`
+  - `DISCORD_LOGIN_LINK=https://discord.com/api/oauth2/authorize?client_id=<your discord bot client id>&response_type=code&scope=identify%20guilds`
+    - Make sure to fill in the bot client ID
+  - `DISCORD_BOT_LINK=https://discord.com/api/oauth2/authorize?client_id=<your discord bot client id>&permissions=67128384&scope=bot`
+    - Make sure to fill in the bot client ID 
+  - `DISCORD_LOGOUT_LINK=http://localhost:<your chosen port number>`
+    - Make sure to fill in the port number, either with the one chosen above or with 3000 if you didn't choose one. 
+ 3. npm install
+ 4. npm start
+ 5. Reach the web frontend at `http://localhost:<your chosen port number>`.
+
 [logo]: https://github.com/jacknight/buzzer/raw/main/assets/bolt-small.png "Buzzerd Lightning Bolt Logo"
